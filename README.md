@@ -1,2 +1,2 @@
 # YOLOv8
-Train yolov8 on colab and predict on PC
+Trainning yolov8 on colab and prediction on PC
