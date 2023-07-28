@@ -30,7 +30,8 @@ def main(onnx_model, input_image):
     blob = cv2.dnn.blobFromImage(image, scalefactor=1 / 255, size=(640, 640), swapRB=True)
     model.setInput(blob)
     outputs = model.forward()
-
+    preds = outputs.transpose((0, 2, 1))
+    print("shape of predict:", preds.shape)
     outputs = np.array([cv2.transpose(outputs[0])])
     rows = outputs.shape[1]
 

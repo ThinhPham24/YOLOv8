@@ -18,7 +18,7 @@ from ultralytics.utils import LOGGER, TryExcept, plt_settings, threaded
 from .checks import check_font, check_version, is_ascii
 from .files import increment_path
 from .ops import clip_boxes, scale_image, xywh2xyxy, xyxy2xywh
-
+import random
 
 class Colors:
     """Ultralytics color palette https://ultralytics.com/."""
@@ -110,8 +110,13 @@ class Annotator:
                             txt_color,
                             thickness=tf,
                             lineType=cv2.LINE_AA)
-
-    def masks(self, masks, colors, im_gpu, alpha=0.5, retina_masks=False):
+    def randm_color(self):
+        color_R = random.int(0,255)
+        color_G = random.int(0,255)
+        color_B = random.int(0,255)
+        color_rand = (color_R,color_B,color_G)
+        return color_rand
+    def masks(self, masks, colors, im_gpu, alpha=0.4, retina_masks=False):
         """Plot masks at once.
         Args:
             masks (tensor): predicted masks on cuda, shape: [n, h, w]
@@ -126,6 +131,7 @@ class Annotator:
             self.im[:] = im_gpu.permute(1, 2, 0).contiguous().cpu().numpy() * 255
         if im_gpu.device != masks.device:
             im_gpu = im_gpu.to(masks.device)
+        
         colors = torch.tensor(colors, device=masks.device, dtype=torch.float32) / 255.0  # shape(n,3)
         colors = colors[:, None, None]  # shape(n,1,1,3)
         masks = masks.unsqueeze(3)  # shape(n,h,w,1)
