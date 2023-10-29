@@ -1,6 +1,8 @@
 # YOLOv8
-Trainning yolov8 on colab and prediction on PC
-This rep is unofficial. If you are interested in YOLOv8, you can visit official [here](https://github.com/ultralytics/ultralytics)
+Training yolov8 on colab and prediction on PC.
+
+This rep is unofficial. If you are interested in YOLOv8, you can visit official [here](https://github.com/ultralytics/ultralytics).
+
 # Tips for the Best Training Result
 📚 This guide explains how to produce the best mAP and training results with YOLOv5 🚀. UPDATED 25 May 2022.
 
